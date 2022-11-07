@@ -4,7 +4,7 @@ from activite.models import Activite,Etape,Vente
 # Register your models here.
 @admin.register(Activite)
 class ActiviteAdmin(admin.ModelAdmin):
-    list_display = ('id','libelle', 'statut','date_debut','date_fin')
+    list_display = ('id','libelle','user','statut','date_debut','date_fin')
 
 @admin.register(Etape)
 class EtapeAdmin(admin.ModelAdmin):

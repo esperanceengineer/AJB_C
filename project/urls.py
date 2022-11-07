@@ -23,10 +23,12 @@ from rest_framework import routers
 
 from blog.views import ArticleAPIView,PartenaireAPIView,TemoignageAPIView, SujetViewSet,CommentViewSet
 from users.views import ProfilAPIView,TypeActiviteAPIView,UserAPIView, UserDetailAPIView
+from activite.views import VenteAPIView,ActiviteViewSet,EtapeAPIView
 
 router = routers.DefaultRouter()
 router.register('sujet',SujetViewSet, basename='sujet')
 router.register('comment',CommentViewSet,basename='comment')
+router.register('activite',ActiviteViewSet,basename='activite')
 
 
 
@@ -41,6 +43,8 @@ urlpatterns = [
     path('api/temoignage', TemoignageAPIView.as_view()),
     path('api/typeactivite', TypeActiviteAPIView.as_view()),
     path('api/profils', ProfilAPIView.as_view()),
+    path('api/vente/', VenteAPIView.as_view()),
+    path('api/etape/', EtapeAPIView.as_view()),
     path('api/users', UserAPIView.as_view()),
     path('api/users/<int:pk>', UserDetailAPIView.as_view()),
     path('accounts/register', RegistrationView.as_view(), name='register'),

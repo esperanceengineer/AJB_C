@@ -16,6 +16,7 @@ class Activite(models.Model):
     active = models.BooleanField(default=False)
     typeactivite = models.ForeignKey('users.TypeActivte',on_delete=models.SET_NULL,related_name='types',null=True)
     speculation = models.ForeignKey('users.TypeSpeculation',on_delete=models.SET_NULL,related_name='speculations',null=True)
+    user = models.ForeignKey('users.MyUser',on_delete=models.SET_NULL,related_name='activites',null=True)
 
 
     def __str__(self):

@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from users.models import MyUser,TypeActivte,Profil,TypeSpeculation
+from activite.models import Activite
+from activite.serializers import ActiviteSerializer
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -79,6 +81,13 @@ class TypeSpeculationSerializer(serializers.ModelSerializer):
         fields = ['id','name']
 
 class UserSerializer(serializers.ModelSerializer):
+    activites = serializers.SerializerMethodField()
     class Meta:
         model = MyUser
-        fields = '__all__'
+        fields = ['id','email','name','firstname','tel','photo','pays','province','village','quartier','age',
+        'employes','sexe','situation','longitude','latitude','zone','status','profil','typeActivte','activites']
+    
+    def get_activites(self,instance):
+        queryset = Activite.objects.filter(user=instance)
+        serializer = ActiviteSerializer(queryset, many=True)
+        return serializer.data

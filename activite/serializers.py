@@ -10,7 +10,7 @@ class ImageEtapeSerializer(serializers.ModelSerializer):
 class VenteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vente
-        fields = ['id','depenses', 'benefices','etape','vente']
+        fields = ['id','depenses','benefices','etape','vente','date_created']
 
 class EtapeSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
@@ -36,7 +36,7 @@ class ActiviteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activite
-        fields = ['id', 'libelle','description','typeactivite','speculation','longitude','latitude','statut','date_debut','date_fin']
+        fields = ['id', 'libelle','description','user','typeactivite','speculation','longitude','latitude','statut','date_debut','date_fin','etapes']
 
     def get_etapes(self,instance):
         queryset = Etape.objects.filter(activite=instance)
