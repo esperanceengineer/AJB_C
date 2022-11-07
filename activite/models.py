@@ -27,7 +27,7 @@ class Etape(models.Model):
     libelle = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     active = models.BooleanField(default=False)
-    activite = models.ForeignKey('activite.Activite',on_delete=models.CASCADE,related_name='activites')
+    activite = models.ForeignKey('activite.Activite',on_delete=models.CASCADE,related_name='etapes')
 
 
     def __str__(self):
@@ -35,11 +35,11 @@ class Etape(models.Model):
 
 class ImageEtape(models.Model):
     image = models.ImageField(upload_to=upload_to)
-    sujet = models.ForeignKey('activite.Etape', on_delete=models.CASCADE, related_name='images')
+    etape = models.ForeignKey('activite.Etape', on_delete=models.CASCADE, related_name='images')
 
 class Vente(models.Model):
     benefices = models.IntegerField()
     depenses = models.IntegerField()
     vente = models.IntegerField()
     date_created = models.DateTimeField(auto_now_add=True)
-    etape = models.ForeignKey('activite.Etape', on_delete=models.CASCADE, related_name='etapes')
+    etape = models.ForeignKey('activite.Etape', on_delete=models.CASCADE, related_name='ventes')
