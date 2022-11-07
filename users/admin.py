@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django import forms
 
 
-from users.models import MyUser, Profil, TypeActivte
+from users.models import MyUser, Profil, TypeActivte,TypeSpeculation
 # Register your models here.
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -70,8 +70,12 @@ class ProfilAdmin(admin.ModelAdmin):
 class TypeActiviteAdmin(admin.ModelAdmin):
     list_display = ('id','name', 'active','description')
 
+class TypeSpeculationAdmin(admin.ModelAdmin):
+    list_display = ('id','name', 'active','activite','description')
+
 #admin.site.unregister(Group)
 admin.site.unregister(Group)
 admin.site.register(MyUser, UserAdmin)
 admin.site.register(Profil, ProfilAdmin)
 admin.site.register(TypeActivte, TypeActiviteAdmin)
+admin.site.register(TypeSpeculation, TypeSpeculationAdmin)
