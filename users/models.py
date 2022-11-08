@@ -90,10 +90,12 @@ class MyUser(AbstractBaseUser):
 
     STATUS_VISIBLE = 'En activité'
     STATUS_HIDDEN = 'Au chômage'
+    STATUS_OFF = 'Indisponible'
 
     STATUS_CHOICES = (
         (STATUS_VISIBLE,'En activité'),
         (STATUS_HIDDEN,'Au chômage'),
+        (STATUS_OFF,'Indisponible'),
     )
     STATUS_CELIBAT = 'Célibataire'
     STATUS_MARIE = 'Marié(e)'
@@ -124,8 +126,11 @@ class MyUser(AbstractBaseUser):
     province = models.CharField(max_length=100,null=True, blank=True)
     village = models.CharField(max_length=100,null=True, blank=True)
     quartier = models.CharField(max_length=100,null=True, blank=True)
+    fonction = models.CharField(max_length=100,null=True, blank=True)
     age = models.IntegerField(default=1)
     employes = models.IntegerField(default=1)
+    personnes_charge = models.IntegerField(default=0)
+    salaire_minimum = models.IntegerField(default=0)
     sexe = models.CharField(default=STATUS_FEMININ,max_length=20,choices=STATUS_SEXE)
     situation = models.CharField(default=STATUS_CELIBAT,max_length=20,choices=STATUS_SITUATIONS)
     longitude = models.CharField(max_length=100,null=True, blank=True)

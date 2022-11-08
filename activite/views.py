@@ -4,8 +4,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 
 
-from activite.models import Activite,Etape,Vente
-from activite.serializers import ActiviteSerializer,EtapeSerializer, VenteSerializer,ImageEtapeSerializer
+from activite.models import Activite,Etape,Vente,Rendement
+from activite.serializers import ActiviteSerializer,EtapeSerializer, VenteSerializer,ImageEtapeSerializer,RendementSerializer
 
 # Create your views here.
 class VenteAPIView(APIView):
@@ -16,6 +16,19 @@ class VenteAPIView(APIView):
 
     def post(self, request):
         serializer = VenteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class RendementAPIView(APIView):
+    def get(self, *args, **kwargs):
+        articles = Rendement.objects.all()
+        serializer = RendementSerializer(articles, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = RendementSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

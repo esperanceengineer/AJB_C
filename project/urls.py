@@ -23,7 +23,7 @@ from rest_framework import routers
 
 from blog.views import ArticleAPIView,PartenaireAPIView,TemoignageAPIView, SujetViewSet,CommentViewSet
 from users.views import ProfilAPIView,TypeActiviteAPIView,UserAPIView, UserDetailAPIView
-from activite.views import VenteAPIView,ActiviteViewSet,EtapeAPIView
+from activite.views import VenteAPIView,ActiviteViewSet,EtapeAPIView,RendementAPIView
 
 router = routers.DefaultRouter()
 router.register('sujet',SujetViewSet, basename='sujet')
@@ -44,6 +44,7 @@ urlpatterns = [
     path('api/typeactivite', TypeActiviteAPIView.as_view()),
     path('api/profils', ProfilAPIView.as_view()),
     path('api/vente/', VenteAPIView.as_view()),
+    path('api/rendement/', RendementAPIView.as_view()),
     path('api/etape/', EtapeAPIView.as_view()),
     path('api/users', UserAPIView.as_view()),
     path('api/users/<int:pk>', UserDetailAPIView.as_view()),

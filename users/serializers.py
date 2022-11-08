@@ -12,7 +12,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         model = MyUser
         fields = ['id','email', 'password', 'password2','name','profil','typeActivte','photo',
         'pays','firstname','village','quartier','tel','tel2','age','employes','sexe','situation',
-        'longitude','latitude','zone','status']
+        'longitude','latitude','zone','status','fonction','salaire_minimum','personnes_charge']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -34,6 +34,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
             situation = self.validated_data.get('situation','Célibataire'),
             longitude = self.validated_data.get('longitude',),
             latitude = self.validated_data.get('latitude',),
+            personnes_charge = self.validated_data.get('personnes_charge'),
+            salaire_minimum = self.validated_data.get('salaire_minimum'),
+            fonction = self.validated_data.get('fonction'),
             zone = self.validated_data.get('zone',),
             status = self.validated_data.get('status','Au chômage'),
             profil = self.validated_data.get('profil',1),
@@ -85,7 +88,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
         fields = ['id','email','name','firstname','tel','photo','pays','province','village','quartier','age',
-        'employes','sexe','situation','longitude','latitude','zone','status','profil','typeActivte','activites']
+        'employes','sexe','situation','longitude','latitude','zone','status','profil','typeActivte','personnes_charge','fonction','activites']
     
     def get_activites(self,instance):
         queryset = Activite.objects.filter(user=instance)

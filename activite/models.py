@@ -14,6 +14,7 @@ class Activite(models.Model):
     latitude = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     active = models.BooleanField(default=False)
+    experience = models.IntegerField(default=0)
     typeactivite = models.ForeignKey('users.TypeActivte',on_delete=models.SET_NULL,related_name='types',null=True)
     speculation = models.ForeignKey('users.TypeSpeculation',on_delete=models.SET_NULL,related_name='speculations',null=True)
     user = models.ForeignKey('users.MyUser',on_delete=models.SET_NULL,related_name='activites',null=True)
@@ -44,3 +45,9 @@ class Vente(models.Model):
     vente = models.IntegerField()
     date_created = models.DateTimeField(auto_now_add=True)
     etape = models.ForeignKey('activite.Etape', on_delete=models.CASCADE, related_name='ventes')
+
+class Rendement(models.Model):
+    libelle = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    etape = models.ForeignKey('activite.Etape', on_delete=models.CASCADE, related_name='rendements')
