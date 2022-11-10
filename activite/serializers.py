@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from activite.models import Etape,ImageEtape,Activite,Vente,Rendement
 
 class ImageEtapeSerializer(serializers.ModelSerializer):

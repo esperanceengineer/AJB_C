@@ -25,7 +25,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             firstname = self.validated_data.get('firstname','Pas de prénom'),
             pays = self.validated_data.get('pays',),
             village = self.validated_data.get('village',),
-            quartier = self.validated_data.get('village',),
+            quartier = self.validated_data.get('quartier',),
             tel = self.validated_data.get('tel'),
             tel2 = self.validated_data.get('tel2'),
             age = self.validated_data.get('age',18),
@@ -39,8 +39,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
             fonction = self.validated_data.get('fonction'),
             zone = self.validated_data.get('zone',),
             status = self.validated_data.get('status','Au chômage'),
-            profil = self.validated_data.get('profil',1),
-            typeActivte = self.validated_data.get('typeActivte',1),
+            profil = self.validated_data.get('profil'),
+            typeActivte = self.validated_data.get('typeActivte'),
             photo = self.validated_data.pop('photo')
             )
         password = self.validated_data['password']
