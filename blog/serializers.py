@@ -1,4 +1,5 @@
 from blog.models import Article, Temoignage, Partenaire, Sujet, Comment, Image
+from users.serializers import TypeActiviteSerializer,UserSerializer
 from rest_framework import serializers
 
 
@@ -33,9 +34,11 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class SujetSerialiazer(serializers.ModelSerializer):
     image = serializers.ImageField(required=False)
+    activite = TypeActiviteSerializer(many=False)
+    user = UserSerializer(many=False)
     class Meta:
         model = Sujet
-        fields = ['id','title','activite','text','created_at','image']
+        fields = ['id','title','activite','user','text','created_at','image']
 
 class SujetDetailSerialiazer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
@@ -43,7 +46,7 @@ class SujetDetailSerialiazer(serializers.ModelSerializer):
 
     class Meta:
         model = Sujet
-        fields = ['id','title','activite','text','created_at','images','comments']
+        fields = ['id','title','activite','user','text','created_at','images','comments']
 
     def get_images(self,instance):
         queryset = Image.objects.filter(sujet=instance)

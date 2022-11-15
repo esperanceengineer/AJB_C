@@ -43,6 +43,7 @@ class Partenaire(models.Model):
 class Sujet(models.Model):
     title = models.CharField(max_length=100)
     activite = models.ForeignKey('users.TypeActivte', on_delete=models.SET_NULL, related_name='sujets',null = True)
+    user = models.ForeignKey('users.MyUser', on_delete=models.SET_NULL, related_name='sujets',null = True)
     text = models.TextField(blank=True)
     image = models.ImageField(upload_to=upload_to, blank=True, null=True)
     published = models.BooleanField(default=False)

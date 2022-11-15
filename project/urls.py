@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
 
-from blog.views import ArticleAPIView,PartenaireAPIView,TemoignageAPIView, SujetViewSet,CommentViewSet
+from blog.views import ArticleAPIView,ArticleDetailAPIView,PartenaireAPIView,TemoignageAPIView, SujetViewSet,CommentViewSet
 from users.views import ProfilAPIView,TypeActiviteAPIView,UserAPIView, UserDetailAPIView
 from activite.views import VenteAPIView,ActiviteViewSet,EtapeAPIView,RendementAPIView
 
@@ -39,6 +39,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/article', ArticleAPIView.as_view()),
+    path('api/article/<int:pk>', ArticleDetailAPIView.as_view()),
     path('api/partenaire', PartenaireAPIView.as_view()),
     path('api/temoignage', TemoignageAPIView.as_view()),
     path('api/typeactivite', TypeActiviteAPIView.as_view()),
